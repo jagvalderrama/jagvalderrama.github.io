@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>GPedal</title>
+    <title>VRBTrainer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
-    <meta name="description" content="Virtually ride indoors with Google Street View and bluetooth bike power meters"/>
-    <meta property="og:title" content="GPedal" />
-    <meta property="og:description" content="Virtually ride indoors with Google Street View and bluetooth bike power meters.  Indoor bike riding with Google Maps and BLE bike power meters." />
+    <meta name="description" content="Recorridos virtuales con Google Street View"/>
+    <meta property="og:title" content="VRBTrainer" />
+    <meta property="og:description" content="Recorridos virtuales con Google Street View.  Ciclismo de interior con Google Maps y entrenador ANT+." />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="./css/odometer.css">
@@ -603,7 +603,7 @@
         <div id="ui-vpower-container" style="display: none">
             <div id="ui-vpower">
                 <div id="ui-vpower-label">
-                    Virtual Power
+                    Potencia Virtual
                 </div>
                 <input id="vpower" type="range" min="0" max="900" step="any">
             </div>
@@ -618,13 +618,13 @@
         <div id="ui-finalize-container" style="display: none">
             <div id="ui-finalize">
                 <div id="ui-finalize-label">
-                    Ride Finished
+                    Recorrido finalizado
                 </div>
                 <div id="ui-finalize-actions">
                     <span id="strva-post-error" style="display: none"></span>
                     <input id="input-ride-name" class="form-control" type="text" style="display: none" placeholder="Name Ride">
-                    <a href="#" id="btn-export-strava" class="btn btn-secondary active" role="button" aria-pressed="true" style="display: none">Export to Strava</a>
-                    <a href="#" id="btn-fullscreen" class="btn btn-secondary active" role="button" aria-pressed="true" style="display: block">Go Fullscreen</a>
+                    <a href="#" id="btn-export-strava" class="btn btn-secondary active" role="button" aria-pressed="true" style="display: none">Exportar a Strava</a>
+                    <a href="#" id="btn-fullscreen" class="btn btn-secondary active" role="button" aria-pressed="true" style="display: block">Pantalla completa</a>
                 </div>
             </div>
         </div>
@@ -632,8 +632,8 @@
         <div id="map-view" style="display: none"></div>
     </div>
     <div id="configure-container" class="container">
-        <h1>GPedal</h1>
-        <p class="lead">Virtually ride indoors with Google Street View and bluetooth bike power meters</p>
+        <h1>VRBTrainer</h1>
+        <p class="lead">Ciclismo interior con Google Street View y entrenador ANT+</p>
 
         <div class="container">
             <div class="row">
@@ -648,14 +648,14 @@
                     <form>
                         <div class="form-row">
                             <div class="form-group col-md-9">
-                                <label for="gpx-file-upload">GPX Route</label>
+                                <label for="gpx-file-upload">Ruta GPX</label>
                                 <!-- Nav tabs -->
                                 <ul id="route-nav" class="nav nav-tabs" role="tablist">
                                   <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#upload" role="tab">Upload</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#upload" role="tab">Cargar</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#continue" role="tab">Resume Ride</a>
+                                    <a class="nav-link" data-toggle="tab" href="#continue" role="tab">Pedalear</a>
                                   </li>
                                 </ul>
 
@@ -665,13 +665,13 @@
                                       <br/>
                                       <input type="file" class="form-control-file" accept=".gpx" id="gpx-file-upload">
                                       <p class="small" style="margin: 0">
-                                          GPX Route files can be created for free with <a href="https://www.komoot.com/" target="_blank">Komoot</a> or <a href="https://ridewithgps.com/" target="_blank">Ride with GPS</a>.  A sample gpx route can be downloaded <a href="./routes/washington_dc.gpx">here</a>.
+                                          Las rutas GPX Route pueden ser creadas gratis en <a href="https://www.komoot.com/" target="_blank">Komoot</a> o <a href="https://ridewithgps.com/" target="_blank">Ride with GPS</a>.  Descargar un GPX de prueba aquí: <a href="./routes/washington_dc.gpx">here</a>.
                                       </p>
                                   </div>
                                   <div class="tab-pane" id="continue" role="tabpanel">
                                       <br />
                                       <select class="custom-select" id="continue-previous">
-                                        <option value="" selected>Select One</option>
+                                        <option value="" selected>Seleccione</option>
                                       </select>
                                   </div>
                                 </div>
@@ -681,107 +681,107 @@
                             <div class="form-group col-md-6">
                                 <label for="display-unit" class="col-form-label">Display Unit</label> <br/>
                                 <select class="custom-select" id="display-unit">
-                                  <option value="metric">Metric</option>
+                                  <option value="metric">Métrico</option>
                                   <option value="imperial">Imperial</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="rider-weight" id="rider-weight-label" class="col-form-label">Rider Weight (kg)</label>
-                                <input type="text" class="form-control" id="rider-weight" placeholder="85">
+                                <label for="rider-weight" id="rider-weight-label" class="col-form-label">Peso (kg)</label>
+                                <input type="text" class="form-control" id="rider-weight" placeholder="75">
                             </div>
                         </div>
                         <div class="form-row">
                             <div id="bluetooth-device-container" class="form-group col-md-9">
-                                <label for="btn-bluetooth-device" class="col-form-label">Bluetooth Devices</label>
+                                <label for="btn-bluetooth-device" class="col-form-label">Dispositivos Bluetooth</label>
                                   <br/>
                                   <a id="btn-bluetooth-device" class="btn btn-primary" href="#" role="button">
                                     <i class="fa fa-bluetooth" aria-hidden="true"></i>
-                                    <span id="btn-bluetooth-device-txt">Connect</span>
+                                    <span id="btn-bluetooth-device-txt">Conectar</span>
                                   </a>
                                   <p id="btn-bluetooth-device-warning" class="small" style="display: none">
-                                      Web Bluetooth API not supported in this browser.  Please use Chrome on Mac OS, Linux or Android.<br /><br />
-                                      On iPhone or iPad use the <a href="https://itunes.apple.com/us/app/webble/id1193531073">WebBLE Browser</a> available from the App Store.
+                                      Web API Bluetooth API no soportada por este navegador.  Por favor use Chrome en Mac OS, Linux o Android.<br /><br />
+                                      En iPhone o iPad use el <a href="https://itunes.apple.com/us/app/webble/id1193531073">navegador WebBLE </a> disponible en App Store.
                                   </p>
                                   <br/>
                                   <span class="small">
-                                      <a href=".?useant=true">Switch to Ant+ Sensors</a><br />
-                                      <a href=".?useserial=true" class="serial-switch-link" style="display:none">Switch to Serial Sensors</a>
+                                      <a href=".?useant=true">Cambiar a sensores Ant+</a><br />
+                                      <a href=".?useserial=true" class="serial-switch-link" style="display:none">Cambiar a sensores serie</a>
                                   </span>
                             </div>
                             <div id="ant-device-container" class="form-group col-md-9" style="display: none">
-                                <label for="btn-ant-device" class="col-form-label">Ant Devices</label>
+                                <label for="btn-ant-device" class="col-form-label">Dispositivos Ant+</label>
                                   <br/>
                                   <a id="btn-ant-device" class="btn btn-warning" href="#" role="button">
                                     <i class="fa fa-wifi" aria-hidden="true"></i>
-                                    <span id="btn-ant-device-txt">Scan</span>
+                                    <span id="btn-ant-device-txt">Escanear</span>
                                   </a>
-                                  <input type="text" id="ant-ws-url" class="form-control" placeholder="ANT-WS server address" style="display: inline; width: 300px">
+                                  <input type="text" id="ant-ws-url" class="form-control" placeholder="dirección de servidor ANT-WS" style="display: inline; width: 300px">
                                   <span id="btn-ant-device-error" class="small" style="color: red; display:none">
                                   </span>
                                   <br/>
                                   <span id="btn-ant-device-warning" class="small" style="">
-                                      Download and run the <a href="https://github.com/chadj/ant-ws" target="_blank">ANT-WS</a> server locally to relay ANT+ messages over websockets<br/>
-                                      <a href=".">Switch to BLE Sensors</a><br />
-                                      <a href=".?useserial=true" class="serial-switch-link" style="display:none">Switch to Serial Sensors</a>
+                                      Descargar y ejecutar <a href="https://github.com/chadj/ant-ws" target="_blank">ANT-WS</a> servidor local para manejar mensajes ANT+ sobre websockets<br/>
+                                      <a href=".">Cambiar a sensores BLE</a><br />
+                                      <a href=".?useserial=true" class="serial-switch-link" style="display:none">Cambiar a sensores serie</a>
                                   </span>
                             </div>
                             <div id="serial-device-container" class="form-group col-md-9" style="display: none">
-                                <label for="btn-serial-device" class="col-form-label">Web Serial Devices</label>
+                                <label for="btn-serial-device" class="col-form-label">Dispositivos Web Serial</label>
                                   <br/>
                                   <a id="btn-serial-device" class="btn btn-warning" href="#" role="button">
                                     <i class="fa fa-wifi" aria-hidden="true"></i>
-                                    <span id="btn-serial-device-txt">Connect</span>
+                                    <span id="btn-serial-device-txt">Conectar</span>
                                   </a>
                                   <span id="btn-serial-device-error" class="small" style="color: red; display:none">
                                   </span>
                                   <br/>
                                   <span id="btn-serial-device-warning" class="small" style="">
-                                      Currently only BH Fitness BladeZ bikes are supported.<br/>
-                                      <a href=".">Switch to BLE Sensors</a><br />
-                                      <a href=".?useant=true">Switch to Ant+ Sensors</a>
+                                      Por ahora solo bicicletas BH Fitness BladeZ son soportadas.<br/>
+                                      <a href=".">Cambiar a sensores BLE</a><br />
+                                      <a href=".?useant=true">Cambiar a sensores Ant+</a>
                                   </span>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="power-meter" class="col-form-label">Power Meter</label><br/>
+                                <label for="power-meter" class="col-form-label">Potenciómetro</label><br/>
                                 <select class="custom-select" id="power-meter">
-                                  <option value="virtual" selected>Virtual Power Meter</option>
+                                  <option value="virtual" selected>Potenciómetro Virtual</option>
                                   <option value="cycleopsmagnetopowercurve">Cycleops Magneto Power Curve</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="hr-meter" class="col-form-label">Heart Rate Monitor</label><br/>
+                                <label for="hr-meter" class="col-form-label">Monitor de Pulsaciones</label><br/>
                                 <select class="custom-select" id="hr-meter">
-                                  <option value="" selected>Disabled</option>
+                                  <option value="" selected>Deshabilitado</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="cadence-meter" class="col-form-label">Cadence Meter</label><br/>
+                                <label for="cadence-meter" class="col-form-label">Medidor de Cadencia</label><br/>
                                 <select class="custom-select" id="cadence-meter">
-                                  <option value="" selected>Disabled</option>
+                                  <option value="" selected>Deshabilitado</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row" id="container-strava">
                             <div class="form-group col-md-6">
-                                <label class="col-form-label">Connections</label>
+                                <label class="col-form-label">Conexiones</label>
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-4" style="padding-left: 0; padding-right: 0">
                                             <img src="./images/strava.png" id="strava-connection" style="width: 100%; margin-top: 5px"/>
                                         </div>
                                         <div class="col-6">
-                                            <a href="#" id="strava-btn-connect" class="btn btn-secondary active" role="button" aria-pressed="true">Connect</a>
-                                            <a href="#" id="strava-btn-connected" class="btn btn-success disabled" style="display: none" role="button" aria-pressed="true">Connected</a>
+                                            <a href="#" id="strava-btn-connect" class="btn btn-secondary active" role="button" aria-pressed="true">Conectar</a>
+                                            <a href="#" id="strava-btn-connected" class="btn btn-success disabled" style="display: none" role="button" aria-pressed="true">Conectado</a>
                                             <span id="strava-clear" style="font-size: 12px; display: none">
-                                                <a href="#" id="strava-btn-clear">Clear Connection</a>
+                                                <a href="#" id="strava-btn-clear">Limpiar conexión</a>
                                             </span>
                                             <span id="strava-error-message" style="font-size: 12px; display: none">
                                             </span>
@@ -790,25 +790,16 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" id="begin-session" class="btn btn-primary">Begin</button>
+                        <button type="submit" id="begin-session" class="btn btn-primary">Empezar</button>
                     </form>
                 </div>
             </div>
         </div>
-
-        <footer class="footer mt-3">
-          <div class="container">
-            <span class="small text-muted">Indoor bike riding with Google Maps and BLE bike power meters.</span><br />
-            <span class="small text-muted">GPedal is open source and hosted on <a href="https://github.com/chadj/gpedal">Github</a>.  Contributions are welcome.  <a href="https://github.com/chadj/gpedal">https://github.com/chadj/gpedal</a> </span><br />
-            <span class="small text-muted">Send questions or comments to <a href="mailto:chadjamesjohnson@gmail.com">chadjamesjohnson@gmail.com</a></span><br />
-          </div>
-        </footer>
-
     </div>
 
     <script id="strava-gpx-template" type="x-tmpl-mustache">
     <?xml version="1.0" encoding="UTF-8"?>
-    <gpx creator="GPedalGPX" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+    <gpx creator="VRB_GPX" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
      <metadata>
       <time>{{ export_time }}</time>
      </metadata>
@@ -836,7 +827,7 @@
      </trk>
     </gpx>
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8CBYhq7f2aibteBvLz2jvRZAHu346qJM&libraries=geometry"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcwGyRxRbcNGWOFQVT87A1mkxEOfm8t0w&geometry"></script>
     <script src="bundle.js?v=3dfva3d"></script>
   </body>
 </html>
